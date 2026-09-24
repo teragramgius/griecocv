@@ -81,6 +81,75 @@ h1 .off+.off{display:block}
 .ritratto .nota{position:absolute;bottom:-.9rem;right:-9.6rem;white-space:nowrap;transform:rotate(-4deg)}
 @media (max-width:820px){.ritratto .nota{right:-8.4rem}}
 
+
+/* ---------- l'archivio ---------- */
+.arch-bar{display:flex;flex-wrap:wrap;justify-content:space-between;gap:.8rem 1.5rem;align-items:center;margin-bottom:1.1rem}
+.arch-views,.arch-legend{display:flex;flex-wrap:wrap;gap:.45rem;align-items:center}
+.btn[aria-pressed="true"]{background:var(--ink);color:var(--paper);box-shadow:3px 3px 0 var(--rosa)}
+.chip{font-family:var(--mono);font-size:.72rem;letter-spacing:.06em;border:1.5px solid var(--ink);background:transparent;color:var(--ink);padding:.28rem .6rem .28rem .45rem;display:inline-flex;align-items:center;gap:.4rem;cursor:pointer}
+.chip small{opacity:.6;font-size:.68rem}
+.chip .sw{width:.85rem;height:.85rem;border:1.5px solid var(--ink);display:inline-block}
+.chip[data-c="metodi"] .sw{background:var(--blu)}
+.chip[data-c="strumenti"] .sw{background:var(--arancio)}
+.chip[data-c="sistemi"] .sw{background:var(--rosa)}
+.chip[data-c="scritti"] .sw{background:repeating-linear-gradient(0deg,var(--ink) 0 1.5px,transparent 1.5px 4px)}
+.chip[data-c="campo"] .sw{border-radius:50%;background:radial-gradient(circle,var(--rosa) 0 30%,transparent 32% 50%,var(--blu) 52% 60%,transparent 62%)}
+.chip[data-c="riferimenti"] .sw{border-radius:50%;background:repeating-linear-gradient(45deg,var(--ink) 0 1px,transparent 1px 3px)}
+.chip[data-c="ai"] .sw{background:linear-gradient(135deg,var(--rosa) 0 50%,var(--arancio) 50%)}
+.velo{border-left:3px solid var(--arancio);padding-left:.7rem;font-style:italic;margin-top:.7rem!important}
+.velo a{font-style:normal;font-family:var(--mono);font-size:.78rem}
+.arch-key{display:flex;flex-wrap:wrap;gap:.4rem 1.4rem;margin:.9rem 0 0;padding:0;list-style:none;font-family:var(--mono);font-size:.72rem;letter-spacing:.06em}
+.arch-key li{display:flex;align-items:center;gap:.45rem}
+.arch-key i{display:inline-block;width:1.4rem;height:1rem;border:1.5px solid var(--ink);background:var(--paper);position:relative}
+.arch-key .k2::after{content:"";position:absolute;right:-.35rem;top:-.1rem;width:1rem;height:.4rem;background:color-mix(in srgb,var(--blu) 70%,transparent);transform:rotate(40deg)}
+.arch-key .k3{background:repeating-linear-gradient(45deg,var(--ink) 0 1px,var(--paper) 1px 4px)}
+.chip:hover{background:color-mix(in srgb,var(--blu) 12%,transparent)}
+.chip[aria-pressed="true"]{background:color-mix(in srgb,var(--rosa) 32%,transparent);box-shadow:3px 3px 0 var(--ink)}
+.arch-fig{margin:0;border:2px solid var(--ink);background:color-mix(in srgb,var(--paper) 94%,var(--ink) 6%);box-shadow:10px 10px 0 color-mix(in srgb,var(--arancio) 75%,transparent)}
+.stage{position:relative;overflow:hidden}
+#arch{display:block;width:100%;height:clamp(26rem,72vh,46rem);touch-action:pan-y;cursor:grab}
+.stage.dragging #arch{cursor:grabbing}
+.arch-tip{position:absolute;left:0;top:0;pointer-events:none;z-index:5;max-width:17rem;background:var(--paper);border:1.5px solid var(--ink);box-shadow:4px 4px 0 var(--ink);padding:.35rem .6rem .4rem;line-height:1.2}
+.arch-tip b{display:block;font-family:var(--disp);font-weight:700;font-size:1rem}
+.arch-tip span{font-family:var(--mono);font-size:.66rem;letter-spacing:.08em;opacity:.75}
+.arch-wheel{position:absolute;left:50%;top:1rem;transform:translateX(-50%);background:var(--ink);color:var(--paper);padding:.45rem .8rem;opacity:0;transition:opacity .25s;pointer-events:none;z-index:6}
+.stage.hint-on .arch-wheel{opacity:1}
+.arch-fig .cap .btn{padding:.2rem .55rem}
+.finestra{position:absolute;width:min(27rem,calc(100% - 1.5rem));background:var(--paper);border:2px solid var(--ink);box-shadow:8px 8px 0 color-mix(in srgb,var(--blu) 70%,transparent);z-index:20;animation:apri .34s cubic-bezier(.2,1.25,.4,1)}
+.finestra:focus{outline:none}
+.finestra:focus-visible{outline:3px solid var(--rosa);outline-offset:2px}
+@keyframes apri{from{transform:scale(.15) rotate(-4deg);opacity:0}to{transform:none;opacity:1}}
+.fin-bar{display:flex;justify-content:space-between;align-items:center;gap:.5rem;padding:.3rem .3rem .3rem .5rem;border-bottom:2px solid var(--ink);background:repeating-linear-gradient(0deg,transparent 0 3px,color-mix(in srgb,var(--ink) 16%,transparent) 3px 4px);cursor:move;touch-action:none;user-select:none}
+.fin-bar .lbl{background:var(--paper);padding:.05rem .4rem}
+.fin-x{font-family:var(--mono);font-size:1rem;line-height:1;width:1.7rem;height:1.7rem;border:1.5px solid var(--ink);background:var(--paper);color:var(--ink);cursor:pointer}
+.fin-x:hover{background:var(--rosa)}
+.fin-body{display:grid;grid-template-columns:8.5rem minmax(0,1fr);gap:1rem;padding:1rem 1rem .8rem}
+.fin-big{width:8.5rem;height:8.5rem;display:block}
+.fin-txt h3{font-family:var(--disp);font-weight:700;font-size:1.3rem;line-height:1.05;margin:0 0 .35rem}
+.fin-sub{font-style:italic;margin:0 0 .45rem;font-size:.92rem;line-height:1.35}
+.fin-txt p{margin:0 0 .5rem;font-size:.95rem;line-height:1.45}
+.fin-txt a{font-family:var(--mono);font-size:.78rem}
+.fin-prove{border-top:1.5px dashed var(--rule);padding:.6rem 1rem .9rem}
+.fin-strip{display:flex;gap:.35rem;flex-wrap:wrap;margin-top:.45rem}
+.fin-strip button{padding:0;border:2px solid transparent;background:none;cursor:pointer;width:2.7rem;height:2.7rem}
+.fin-strip button:hover{border-color:var(--rule)}
+.fin-strip button[aria-current="true"]{border-color:var(--rosa)}
+.fin-strip canvas{width:100%;height:100%;display:block}
+.indice{margin-top:1.8rem;border-top:1.5px solid var(--rule);padding-top:.9rem}
+.indice summary{cursor:pointer;font-family:var(--mono);font-size:.78rem;letter-spacing:.1em;text-transform:uppercase}
+.indice-cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(12rem,1fr));gap:1.2rem 2rem;margin-top:1.1rem}
+.indice ul{list-style:none;margin:.45rem 0 0;padding:0}
+.indice li button{background:none;border:0;padding:.14rem 0;font:inherit;color:inherit;text-align:left;cursor:pointer;text-decoration:underline;text-decoration-color:var(--rule);text-underline-offset:3px}
+.indice li button:hover{text-decoration-color:var(--rosa)}
+@media (max-width:820px){
+  .finestra{left:.5rem!important;right:.5rem;top:auto!important;bottom:.5rem;width:auto}
+  .fin-body{grid-template-columns:5.5rem minmax(0,1fr)}
+  .fin-big{width:5.5rem;height:5.5rem}
+  #arch{height:clamp(24rem,65vh,34rem)}
+}
+@media (prefers-reduced-motion:reduce){.finestra{animation:none}}
+html.has-cursore #arch,html.has-cursore .chip,html.has-cursore .fin-bar,html.has-cursore .indice summary{cursor:none}
+
 /* ---------- sezioni ---------- */
 section{padding:clamp(3.5rem,7vw,6rem) 0}
 .head{display:grid;grid-template-columns:8rem minmax(0,1fr);gap:clamp(1rem,3vw,2.5rem);align-items:start;margin-bottom:2.5rem}
@@ -248,7 +317,7 @@ footer{padding:2.5rem 0 3rem;font-family:var(--mono);font-size:.75rem;letter-spa
         <span class="lbl nota">ciao, sono io</span>
       </div>
       <h1 class="disp"><span class="off" data-t="giusy">giusy</span><span class="off" data-t="grieco">grieco</span></h1>
-      <p class="role">Sto dietro ai progetti e alle persone che creano: prendo un'idea e la porto al punto in cui <b>regge, convince e circola</b>. Format, contenuti, posizionamento, design sistemico, metodi ibridi.</p>
+      <p class="role">Sto dietro ai progetti e alle persone che creano: prendo un'idea e la porto al punto in cui <b>regge, convince e circola</b>. Format, contenuti, posizionamento, design sistemico, metodi ibridi, e <a href="#archivio">un archivio di attrezzi</a> costruiti a mano.</p>
       <p style="margin:1.4rem 0 0"><a class="btn dl" href="CV_Giusy_Grieco.pdf" download>scarica il cv (pdf)</a></p>
       <p class="meta lbl"><svg class="doodle" viewBox="-20 -20 40 40" aria-hidden="true"><path d="M0 -16 L4 -4 L16 0 L4 4 L0 16 L-4 4 L-16 0 L-4 -4Z"/></svg><span>Ricerca europea</span><span>Facilitazione</span><span>Knowledge design</span><span>Pratica artistica</span></p>
     </div>
@@ -265,10 +334,48 @@ footer{padding:2.5rem 0 3rem;font-family:var(--mono);font-size:.75rem;letter-spa
 <main>
 
 <div class="wrap"><svg class="hand-rule" viewBox="0 0 1200 9" preserveAspectRatio="none" aria-hidden="true"><path d="M2 5 C120 2 240 8 360 4 C480 1 600 8 720 5 C840 2 960 8 1080 4 C1130 2 1170 6 1198 4"/></svg></div>
+<section id="archivio" aria-labelledby="h-arch">
+  <div class="wrap">
+    <div class="head">
+      <p class="lbl">01 — l'archivio</p>
+      <div>
+        <h2 class="disp" id="h-arch">Una bottega di attrezzi fatti a <span class="off" data-t="mano">mano</span>. <svg class="doodle" viewBox="-30 -26 60 52" aria-hidden="true"><path d="M-22 -18 L22 -18 C24 -2 18 18 0 22 C-18 18 -24 -2 -22 -18Z"/><path d="M-22 -8 C-8 -2 8 -2 22 -8"/></svg></h2>
+        <p class="intro">È il cuore del mio lavoro: metodi, metodi AI per produrre contenuti, strumenti, sistemi visivi, scritti, e la collezione di riferimenti da cui tutto viene. Ogni attrezzo è passato per molte prove prima di funzionare, per questo ogni voce ha più schede. Non tutto è aperto: una bottega mostra il banco, non il quaderno.</p>
+        <ul class="arch-key" aria-label="Legenda"><li><i></i>aperta</li><li><i class="k2"></i>socchiusa, il resto a voce</li><li><i class="k3"></i>sigillata</li></ul>
+      </div>
+    </div>
+    <div class="arch-bar">
+      <div class="arch-views" role="group" aria-label="Come disporre le schede">
+        <button class="btn" type="button" data-v="costellazione" aria-pressed="true">costellazione</button>
+        <button class="btn" type="button" data-v="cassetti" aria-pressed="false">cassetti</button>
+        <button class="btn" type="button" data-v="tavolo" aria-pressed="false">tavolo</button>
+      </div>
+      <div class="arch-legend" id="arch-legend" role="group" aria-label="Mostra solo un tipo"></div>
+    </div>
+    <figure class="arch-fig">
+      <div class="stage" id="stage">
+        <canvas id="arch" tabindex="-1" aria-label="Archivio interattivo delle schede. La versione testuale è nell'indice sotto la figura."></canvas>
+        <div class="arch-tip" id="arch-tip" hidden></div>
+        <p class="arch-wheel lbl" aria-hidden="true">tieni premuto ctrl o ⌘ per lo zoom</p>
+      </div>
+      <figcaption class="cap lbl">
+        <span>fig. 2 — l'archivio, <span id="arch-n"></span> schede · trascina, clicca una scheda per aprirla</span>
+        <span style="display:flex;gap:.4rem"><button class="btn" id="z-in" type="button" aria-label="Avvicina">+</button><button class="btn" id="z-out" type="button" aria-label="Allontana">−</button><button class="btn" id="z-fit" type="button">tutto</button></span>
+      </figcaption>
+    </figure>
+    <details class="indice">
+      <summary>indice dell'archivio, in forma di elenco</summary>
+      <div class="indice-cols" id="indice-cols"></div>
+    </details>
+    <p class="ask">Se vi serve uno di questi attrezzi, <a href="mailto:giusygrieco@proton.me">scrivetemi</a> e ve lo racconto per intero. <svg class="doodle" viewBox="-22 -20 44 40" aria-hidden="true"><path d="M0 14 C-16 4 -20 -6 -14 -12 C-8 -18 0 -12 0 -6 C0 -12 8 -18 14 -12 C20 -6 16 4 0 14Z"/></svg></p>
+  </div>
+</section>
+
+<div class="wrap"><svg class="hand-rule" viewBox="0 0 1200 9" preserveAspectRatio="none" aria-hidden="true"><path d="M2 5 C120 2 240 8 360 4 C480 1 600 8 720 5 C840 2 960 8 1080 4 C1130 2 1170 6 1198 4"/></svg></div>
 <section id="pratica" aria-labelledby="h-pratica">
   <div class="wrap">
     <div class="head">
-      <p class="lbl">01 — cosa faccio</p>
+      <p class="lbl">02 — cosa faccio</p>
       <div>
         <h2 class="disp" id="h-pratica">Cinque modi per mettere le <span class="off" data-t="ali">ali</span> a un'idea che non è mia. <svg class="doodle" viewBox="-40 -26 80 52" aria-hidden="true"><path d="M0 -4 C-7 -22 -30 -24 -28 -7 C-27 3 -11 5 0 -4Z"/><path d="M0 -4 C7 -22 30 -24 28 -7 C27 3 11 5 0 -4Z"/><path d="M0 -2 C-9 4 -22 7 -19 17 C-17 24 -5 20 0 2Z"/><path d="M0 -2 C9 4 22 7 19 17 C17 24 5 20 0 2Z"/><path d="M0 -8 L0 14 M0 -8 C-4 -14 -7 -17 -11 -19 M0 -8 C4 -14 7 -17 11 -19"/></svg></h2>
         <p class="intro">Chi lavora nella cultura produce molto più di quanto riesca a rendere visibile, riusabile e finanziabile. Il mio mestiere è costruire l'impalcatura intorno: il format che regge, il documento che resta, il posizionamento che si capisce, il metodo che si può ripetere.</p>
@@ -316,7 +423,7 @@ footer{padding:2.5rem 0 3rem;font-family:var(--mono);font-size:.75rem;letter-spa
 <section id="potenziare" aria-labelledby="h-pot">
   <div class="wrap">
     <div class="head">
-      <p class="lbl">02 — potenziare</p>
+      <p class="lbl">03 — potenziare</p>
       <div>
         <h2 class="disp" id="h-pot">Nessuna idea nasce già capace di <span class="off" data-t="volare">volare</span>.<svg class="doodle" viewBox="-26 -26 52 52" aria-hidden="true"><path d="M2 0 C2 -6 -6 -6 -6 0 C-6 8 4 9 8 2 C13 -7 3 -17 -7 -14 C-19 -11 -22 3 -15 12 C-7 22 9 22 18 13"/></svg> <svg class="doodle" viewBox="-26 -30 52 60" aria-hidden="true"><path d="M0 26 C0 6 0 -6 0 -20"/><path d="M0 4 C-16 2 -20 -10 -6 -12 C2 -13 2 -2 0 4Z"/><path d="M0 -4 C16 -6 20 -18 6 -20 C-2 -21 -2 -10 0 -4Z"/></svg></h2>
         <p class="intro">Quasi tutte le idee che mi arrivano sono giuste e non reggono ancora: manca la struttura, non il talento. Il mio lavoro è aggiungere i pezzi che mancano finché l'idea sta in piedi da sola, convince chi deve dire di sì e continua a circolare anche senza di me.</p>
@@ -349,7 +456,7 @@ footer{padding:2.5rem 0 3rem;font-family:var(--mono);font-size:.75rem;letter-spa
 <section id="lavori" aria-labelledby="h-lavori">
   <div class="wrap">
     <div class="head">
-      <p class="lbl">03 — i lavori <svg class="doodle" viewBox="-30 -20 60 40" aria-hidden="true"><path d="M-18 10 C-28 10 -28 -2 -18 -2 C-18 -14 -2 -18 2 -8 C10 -16 22 -8 18 0 C26 2 25 10 18 10Z"/></svg></p>
+      <p class="lbl">04 — i lavori <svg class="doodle" viewBox="-30 -20 60 40" aria-hidden="true"><path d="M-18 10 C-28 10 -28 -2 -18 -2 C-18 -14 -2 -18 2 -8 C10 -16 22 -8 18 0 C26 2 25 10 18 10Z"/></svg></p>
       <div>
         <h2 class="disp" id="h-lavori">Dodici finestrelle. Aprine <span class="off" data-t="una">una</span>. <svg class="doodle" viewBox="-26 -26 52 52" aria-hidden="true"><path d="M0 -22 C2 -7 7 -2 22 0 C7 2 2 7 0 22 C-2 7 -7 2 -22 0 C-7 -2 -2 -7 0 -22Z"/></svg></h2>
         <p class="intro">Ricerca, facilitazione, scrittura, arte: sulla mappa hanno lo stesso peso, perché si tengono in piedi a vicenda. Tocca un pezzo e vedi cosa c'è sotto.</p>
@@ -359,27 +466,6 @@ footer{padding:2.5rem 0 3rem;font-family:var(--mono);font-size:.75rem;letter-spa
       <div class="giga-grid" id="giga-grid" role="tablist" aria-label="Dodici lavori"></div>
       <div class="work-panel" id="work-panel" aria-live="polite"></div>
     </div>
-  </div>
-</section>
-<div class="wrap"><svg class="hand-rule" viewBox="0 0 1200 9" preserveAspectRatio="none" aria-hidden="true"><path d="M2 5 C120 2 240 8 360 4 C480 1 600 8 720 5 C840 2 960 8 1080 4 C1130 2 1170 6 1198 4"/></svg></div>
-<section id="strumenti" aria-labelledby="h-str">
-  <div class="wrap">
-    <div class="head">
-      <p class="lbl">04 — la tasca</p>
-      <div>
-        <h2 class="disp" id="h-str">Gli attrezzi che mi sono <span class="off" data-t="costruita">costruita</span>. <svg class="doodle" viewBox="-30 -26 60 52" aria-hidden="true"><path d="M-22 -18 L22 -18 C24 -2 18 18 0 22 C-18 18 -24 -2 -22 -18Z"/><path d="M-22 -8 C-8 -2 8 -2 22 -8"/></svg></h2>
-        <p class="intro">Come i gadget di Doraemon, ma fatti in casa: metodi, canvas e strumenti nati risolvendo un problema vero e poi riusati in ogni progetto dopo. Alcuni sono pubblici, altri li porto dentro il lavoro.</p>
-      </div>
-    </div>
-    <div class="tools">
-      <article><span class="lbl">metodo</span><svg class="doodle" viewBox="-26 -26 52 52" aria-hidden="true"><circle cx="0" cy="0" r="20"/><path d="M-8 8 L2 -2 L8 -8 L-2 2 Z"/></svg><h3>SFSA</h3><p>Systemic Foresight &amp; Service Architecture: il modo in cui guardo un'organizzazione prima di toccarla.</p></article>
-      <article><span class="lbl">canvas</span><svg class="doodle" viewBox="-30 -18 60 36" aria-hidden="true"><path d="M-24 -8 L24 -8 L24 8 L-24 8Z"/><path d="M-14 -8 L-14 0 M-4 -8 L-4 2 M6 -8 L6 0 M16 -8 L16 2"/></svg><h3>Gigamap 3×4</h3><p>Dodici celle: attori, risorse e tempi di un progetto in una pagina sola. Serve a far vedere il sistema a chi ci sta dentro.</p></article>
-      <article><span class="lbl">diagnostica</span><svg class="doodle" viewBox="-30 -20 60 40" aria-hidden="true"><circle cx="-14" cy="0" r="9"/><path d="M-5 0 L24 0 M16 0 L16 8 M22 0 L22 7"/></svg><h3>3 Distances</h3><p>Misura quanto si è lontani dal risultato e da dove nasce quella distanza. È lo strumento che dice dove intervenire.</p></article>
-      <article><span class="lbl">toolkit pubblico</span><svg class="doodle" viewBox="-26 -26 52 52" aria-hidden="true"><circle cx="-4" cy="-4" r="14"/><path d="M7 7 L20 20"/></svg><h3>Knowledge valorisation toolkit</h3><p>Template, rubriche e indicatori riusabili per la valorizzazione della conoscenza nei progetti Horizon.</p></article>
-      <article><span class="lbl">curriculum aperto</span><svg class="doodle" viewBox="-30 -18 60 36" aria-hidden="true"><path d="M-24 -8 L24 -8 L24 8 L-24 8Z"/><path d="M-14 -8 L-14 0 M-4 -8 L-4 2 M6 -8 L6 0 M16 -8 L16 2"/></svg><h3>AI ethics workplace workshop</h3><p>Quattro moduli, agende e guida per chi facilita, in licenza CC BY 4.0: un corso che chiunque può riprendere e adattare.</p></article>
-      <article><span class="lbl">dataset</span><svg class="doodle" viewBox="-20 -28 40 56" aria-hidden="true"><path d="M-10 -22 L10 -22 L10 22 L-10 22Z"/><circle cx="0" cy="-12" r="4"/><circle cx="0" cy="0" r="4"/><circle cx="0" cy="12" r="4"/></svg><h3>EU AI governance tracker</h3><p>I framework regolatori europei in dati strutturati, con notebook di analisi, sintesi in linguaggio piano e metodologia documentata.</p></article>
-    </div>
-    <p class="ask">Se vi interessa uno di questi, <a href="mailto:giusygrieco@proton.me">scrivetemi</a> e ve lo racconto per intero. <svg class="doodle" viewBox="-30 -26 60 52" aria-hidden="true"><path d="M-22 -18 L22 -18 C24 -2 18 18 0 22 C-18 18 -24 -2 -22 -18Z"/><path d="M-22 -8 C-8 -2 8 -2 22 -8"/></svg></p>
   </div>
 </section>
 
@@ -714,6 +800,410 @@ WORKS.forEach((w,i) => {
 });
 function drawGrid(){ grid.querySelectorAll('canvas').forEach((cv,i) => shapeCanvas(cv, i%SHAPES.length, 17+i*23, i%2 ? BLU : ROSA)); }
 
+
+
+/* ---------- l'archivio: le schede si dispongono come in un atlante ---------- */
+(() => {
+const stage = document.getElementById('stage'), arch = document.getElementById('arch'), tip = document.getElementById('arch-tip');
+if(!stage || !arch) return;
+
+// per aggiungere una foto vera a una voce: img:'img/archivio/nome-file' (senza estensione, va bene jpg o png)
+// tre livelli di apertura per ogni voce:
+//   v:'aperta'     → si vede tutto (è già pubblico: pubblicazioni, repository)
+//   v:'socchiusa'  → titolo e una riga, il resto a voce
+//   v:'sigillata'  → nessun nome, solo che tipo di riferimento è (il nome non è nemmeno nel codice)
+// per aggiungere una foto vera a una voce: img:'img/archivio/nome-file' (senza estensione, va bene jpg o png)
+const CATS = [
+  {id:'metodi',      nome:'metodi'},
+  {id:'ai',          nome:'metodi AI'},
+  {id:'strumenti',   nome:'strumenti'},
+  {id:'sistemi',     nome:'sistemi visivi'},
+  {id:'scritti',     nome:'scritti'},
+  {id:'campo',       nome:'sul campo'},
+  {id:'riferimenti', nome:'riferimenti'}
+];
+const CI = Object.fromEntries(CATS.map((c,i) => [c.id,i]));
+const ITEMS = [
+  {c:'metodi', v:'socchiusa', t:"SFSA", s:"Systemic Foresight & Service Architecture", k:"metodo", n:8, d:"Il modo in cui guardo un'organizzazione prima di toccarla."},
+  {c:'metodi', v:'socchiusa', t:"Gigamap 3×4", k:"canvas", n:7, d:"Dodici celle per vedere un intero progetto in una pagina."},
+  {c:'metodi', v:'socchiusa', t:"3 Distances", k:"diagnostica", n:6, d:"Dice quanto si è lontani dal risultato, e perché."},
+  {c:'metodi', v:'aperta', t:"Co-design in ideazione", k:"format", n:5, d:"Sessioni con team misti per far emergere il concept di una proposta prima della scrittura."},
+  {c:'metodi', v:'aperta', t:"Metodo misto", k:"disegno di ricerca", n:5, d:"Desk analysis, interviste e fieldwork tenuti insieme in un unico disegno."},
+
+  {c:'ai', v:'socchiusa', t:"Board a tre voci", k:"skill", n:6, d:"Tre punti di vista simulati che mettono sotto stress una decisione prima di prenderla."},
+  {c:'ai', v:'socchiusa', t:"Matrice di traduzione", k:"skill", n:5, d:"Incrocia due percorsi diversi e ne ricava un posizionamento."},
+  {c:'ai', v:'socchiusa', t:"Dal brief al prompt", k:"produzione visiva", n:6, d:"Una frase detta di corsa diventa un prompt strutturato per immagini e video."},
+  {c:'ai', v:'socchiusa', t:"Istruzioni di progetto", k:"contesto", n:5, d:"File che danno al modello il gusto e le regole di un progetto, così ogni contenuto parte già allineato."},
+
+  {c:'strumenti', v:'aperta', t:"Knowledge valorisation toolkit", k:"toolkit pubblico", n:7, u:"https://github.com/teragramgius/horizon-europe-knowledge-valorisation-toolkit", d:"Template, rubriche e indicatori riusabili per la valorizzazione della conoscenza nei progetti Horizon."},
+  {c:'strumenti', v:'aperta', t:"AI ethics workplace workshop", k:"curriculum aperto", n:6, u:"https://github.com/teragramgius/ai-ethics-workplace-workshop", d:"Quattro moduli con agende e guida per chi facilita, in licenza CC BY 4.0."},
+  {c:'strumenti', v:'socchiusa', t:"EU AI governance tracker", k:"dataset", n:5, d:"I framework regolatori europei in dati strutturati."},
+  {c:'strumenti', v:'aperta', t:"Piani formativi modulari", k:"formazione", n:4, d:"Percorsi su agentic AI al Politecnico di Milano, per pubblici tecnici e non tecnici."},
+
+  {c:'sistemi', v:'aperta', t:"I Quadrotti", k:"design system", n:8, d:"Brand di arte generativa su base tangram: sistema visivo, pattern generativi, design system."},
+  {c:'sistemi', v:'aperta', t:"Track record Horizon Europe", k:"matrice interattiva", n:5, u:"https://teragramgius.github.io/horizon", d:"Matrice bilingue che mappa le competenze su sette assi."},
+  {c:'sistemi', v:'aperta', t:"Cuore di Napoli", k:"city brand", n:6, d:"Copy e identità visiva di un city brand, durante la triennale."},
+  {c:'sistemi', v:'aperta', t:"Materiali divulgativi a Berlino", k:"divulgazione", n:5, d:"Ricerca su innovazione e rigenerazione urbana tradotta in documenti e flyer per tutti."},
+  {c:'sistemi', v:'aperta', t:"Questo sito", k:"autoritratto", n:4, d:"Tangram tagliati a mano e inchiostri fuori registro. Anche il portfolio è un attrezzo."},
+
+  {c:'scritti', v:'aperta', t:"Deliverable D4.1, KALEIDOS", s:"Open Science and Knowledge Valorisation: Policy Recommendations for Quadruple Helix Environments", k:"policy recommendations", n:7, u:"https://doi.org/10.5281/zenodo.17909495", d:"Sola autrice principale, open access."},
+  {c:'scritti', v:'aperta', t:"Adaptive Horizons", k:"pubblicazione", n:5, u:"https://doi.org/10.5281/zenodo.10458408", d:"Co-autrice, dalla ricerca di PERCEIVE."},
+  {c:'scritti', v:'socchiusa', t:"Tesi magistrale", k:"tesi", n:4, d:"Sulla cura dell'opera d'arte e sull'ecologia nel pensiero filosofico."},
+
+  {c:'campo', v:'aperta', t:"Quadrupla elica, quattro regioni", k:"fieldwork", n:6, d:"Lavoro sul campo per KALEIDOS in quattro regioni europee."},
+  {c:'campo', v:'aperta', t:"PERCEIVE", k:"ricerca", n:5, d:"AI e computer vision per il colore nel patrimonio culturale, alla Hochschule Luzern."},
+  {c:'campo', v:'aperta', t:"IN-HABIT, WP5", k:"architettura dell'informazione", n:5, d:"Con Tesseræ a Berlino."},
+  {c:'campo', v:'aperta', t:"Citizen science a Procida", k:"facilitazione", n:4, d:"Facilitazione di un percorso di citizen science."},
+  {c:'campo', v:'aperta', t:"Erasmus+ a Zakopane", k:"facilitazione visuale", n:3, d:"Facilitazione visuale in un progetto Erasmus+."},
+  {c:'campo', v:'aperta', t:"Mostra fotografica a Eboli", k:"mostra", n:3, d:"Una mostra fotografica sul territorio."},
+  {c:'campo', v:'aperta', t:"Una sagra, sconsacrata", k:"design partecipativo", n:4, d:"Design partecipativo su una festa di paese."},
+
+  {c:'riferimenti', v:'sigillata', k:"un maestro", n:3},
+  {c:'riferimenti', v:'sigillata', k:"una comunità", n:3},
+  {c:'riferimenti', v:'sigillata', k:"un modello di ricerca", n:3},
+  {c:'riferimenti', v:'sigillata', k:"un modello di ricerca", n:3},
+  {c:'riferimenti', v:'sigillata', k:"un archivio visivo", n:3},
+  {c:'riferimenti', v:'sigillata', k:"un collettivo", n:3},
+  {c:'riferimenti', v:'sigillata', k:"una scuola", n:3},
+  {c:'riferimenti', v:'sigillata', k:"una scuola", n:3}
+];
+{ let q = 0; ITEMS.forEach(it => { if(it.v === 'sigillata') it.t = `Riferimento ${String(++q).padStart(2,'0')}`; }); }
+const MAIL = 'mailto:giusygrieco@proton.me';
+
+const CS = 60;                         // lato di una scheda, in unità del mondo
+const specs = [], byItem = ITEMS.map(() => []);
+ITEMS.forEach((it,i) => { for(let j=0;j<it.n;j++){ byItem[i].push(specs.length);
+  specs.push({i, j, c:CI[it.c], seed:500+i*53+j*7, x:0,y:0,r:0, fx:0,fy:0,fr:0, tx:0,ty:0,tr:0, delay:0, spr:null}); } });
+const nEl = document.getElementById('arch-n'); if(nEl) nEl.textContent = specs.length;
+
+/* colori letti una volta sola, non a ogni fotogramma */
+let COL = {};
+function refreshCol(){ COL = {ink:INK(), blu:BLU(), rosa:ROSA(), ar:css('--arancio'), paper:css('--paper'), rule:css('--rule')}; }
+
+/* ---- disegno di una scheda: carta tagliata + un segno diverso per ogni tipo ---- */
+function drawSpec(x, it, j, seed, R){
+  const k = R/150, r = rnd(seed);
+  x.save(); x.scale(k,k); x.lineCap = x.lineJoin = 'round';
+  const p = 9, A = 150 - p*2, ox = p+16, oy = p+16, a = A-32;
+  cutPath(x, [[p,p],[150-p,p],[150-p,150-p],[p,150-p]], seed, 2.6);
+  x.fillStyle = COL.paper; x.fill(); x.lineWidth = 2.2; x.strokeStyle = COL.ink; x.stroke();
+  const fillM = (col, al=.9) => { x.save(); x.globalCompositeOperation = 'multiply'; x.globalAlpha = al; x.fillStyle = col; x.fill(); x.restore(); };
+  if(it.pic && j === 0){
+    x.save(); x.beginPath(); x.rect(ox-6, oy-6, a+12, a*.8+12); x.clip();
+    const im = it.pic, s = Math.max((a+12)/im.naturalWidth, (a*.8+12)/im.naturalHeight);
+    x.drawImage(im, ox-6 + ((a+12) - im.naturalWidth*s)/2, oy-6 + ((a*.8+12) - im.naturalHeight*s)/2, im.naturalWidth*s, im.naturalHeight*s);
+    x.restore();
+  } else switch(it.c){
+    case 'metodi': { const n = 3 + (r()*3|0), pts = [];
+      for(let q=0;q<n;q++) pts.push([ox + a*(.12 + r()*.76), oy + a*(.1 + r()*.62)]);
+      x.strokeStyle = COL.ink; x.lineWidth = 1.6; x.beginPath();
+      pts.forEach(([u,v],q) => q ? x.lineTo(u,v) : x.moveTo(u,v)); x.stroke();
+      x.setLineDash([3,4]); x.beginPath(); x.moveTo(...pts[0]); x.lineTo(...pts[pts.length-1]); x.stroke(); x.setLineDash([]);
+      pts.forEach(([u,v],q) => { x.beginPath(); x.arc(u, v, 6 + r()*9, 0, Math.PI*2); if(q%2 === 0) fillM(COL.blu); x.lineWidth = 1.7; x.strokeStyle = COL.ink; x.stroke(); });
+      break; }
+    case 'strumenti': { const cols = 4, rows = 3, cw = a/cols, ch = a*.8/rows;
+      for(let yy=0;yy<rows;yy++) for(let xx=0;xx<cols;xx++){ const x0 = ox+xx*cw, y0 = oy+yy*ch;
+        cutPath(x, [[x0+2.5,y0+2.5],[x0+cw-2.5,y0+2.5],[x0+cw-2.5,y0+ch-2.5],[x0+2.5,y0+ch-2.5]], seed+xx*7+yy*13, 1.8);
+        if(r() < .42) fillM(COL.ar, .85); x.lineWidth = 1.3; x.strokeStyle = COL.ink; x.stroke(); }
+      break; }
+    case 'sistemi': { const m = 1 + (r()*3|0);
+      for(let q=0;q<m;q++){ const s = a*(.4 + r()*.3), px = ox + r()*(a-s), py = oy + r()*(a*.82-s);
+        const pts = SHAPES[(r()*SHAPES.length)|0].map(([u,v]) => [px+u*s, py+v*s]);
+        cutPath(x, pts, seed+q*11, 2.6); fillM(q%2 ? COL.blu : COL.rosa, .85);
+        cutPath(x, pts, seed+q*11+3, 2.6); x.lineWidth = 1.5; x.strokeStyle = COL.ink; x.stroke(); }
+      break; }
+    case 'scritti': { x.strokeStyle = COL.ink;
+      x.lineWidth = 5; x.beginPath(); x.moveTo(ox, oy+4); x.lineTo(ox + a*(.45 + r()*.4), oy+4 + (r()-.5)*2); x.stroke();
+      const hl = 1 + (r()*4|0);
+      for(let q=0;q<6;q++){ const yy = oy + 22 + q*12, len = a*(q === 5 ? .35 + r()*.3 : .72 + r()*.28);
+        if(q === hl){ x.save(); x.globalCompositeOperation = 'multiply'; x.globalAlpha = .55; x.fillStyle = COL.rosa; x.fillRect(ox-2, yy-4, len*.6, 8); x.restore(); }
+        x.lineWidth = 1.3; x.beginPath(); x.moveTo(ox, yy);
+        for(let t=4;t<=len;t+=5) x.lineTo(ox+t, yy + Math.sin(t*.55 + seed)*1.5 + (r()-.5)*1.1); x.stroke(); }
+      break; }
+    case 'campo': { const cx0 = ox + a*(.35 + r()*.3), cy0 = oy + a*(.3 + r()*.22), ph = r()*6;
+      for(let q=4;q>=1;q--){ const R0 = q*a*.1 + 3; x.beginPath();
+        for(let t=0;t<=28;t++){ const an = t/28*Math.PI*2, rr = R0*(1 + Math.sin(an*3 + ph + q)*.17 + (r()-.5)*.05);
+          const u = cx0 + Math.cos(an)*rr*1.3, v = cy0 + Math.sin(an)*rr; t ? x.lineTo(u,v) : x.moveTo(u,v); }
+        x.closePath(); if(q === 1) fillM(COL.rosa, .7); x.lineWidth = 1.3; x.strokeStyle = COL.blu; x.stroke(); }
+      const px = ox + a*(.15 + r()*.7), py = oy + a*.72;
+      x.strokeStyle = COL.ink; x.lineWidth = 1.8; x.beginPath(); x.moveTo(px-5,py-5); x.lineTo(px+5,py+5); x.moveTo(px+5,py-5); x.lineTo(px-5,py+5); x.stroke();
+      break; }
+    case 'ai': { // un fumetto con righe di prompt e una scintilla
+      const bx = ox, by = oy + 4, bw = a*.78, bh = a*.52;
+      cutPath(x, [[bx,by],[bx+bw,by],[bx+bw,by+bh],[bx+bw*.34,by+bh],[bx+bw*.18,by+bh+13],[bx+bw*.2,by+bh],[bx,by+bh]], seed, 2.2);
+      fillM(COL.rosa, .22); x.lineWidth = 1.6; x.strokeStyle = COL.ink; x.stroke();
+      x.lineWidth = 1.3;
+      for(let q=0;q<3;q++){ const yy = by + 11 + q*10, len = bw*(q === 2 ? .35 + r()*.25 : .6 + r()*.25);
+        x.beginPath(); x.moveTo(bx+8, yy); for(let t=4;t<=len-10;t+=5) x.lineTo(bx+8+t, yy + (r()-.5)*1.4); x.stroke(); }
+      const sx0 = ox + a*(.72 + r()*.12), sy0 = oy + a*(.72 + r()*.08), R1 = 12 + r()*6;
+      x.beginPath(); x.moveTo(sx0, sy0-R1); x.quadraticCurveTo(sx0+2, sy0-2, sx0+R1, sy0); x.quadraticCurveTo(sx0+2, sy0+2, sx0, sy0+R1);
+      x.quadraticCurveTo(sx0-2, sy0+2, sx0-R1, sy0); x.quadraticCurveTo(sx0-2, sy0-2, sx0, sy0-R1); x.closePath();
+      fillM(COL.ar, .95); x.lineWidth = 1.4; x.strokeStyle = COL.ink; x.stroke();
+      x.beginPath(); x.arc(sx0 - R1 - 6, sy0 - R1 + 2, 3.5, 0, Math.PI*2); fillM(COL.blu); 
+      break; }
+    case 'riferimenti': { const cx0 = ox + a/2, cy0 = oy + a*.4, R0 = a*.36;
+      x.strokeStyle = COL.ink; x.lineWidth = 2; x.beginPath(); x.arc(cx0, cy0, R0, 0, Math.PI*2); x.stroke();
+      x.lineWidth = 1; x.setLineDash([2,3]); x.beginPath(); x.arc(cx0, cy0, R0-6, 0, Math.PI*2); x.stroke(); x.setLineDash([]);
+      x.save(); x.translate(cx0, cy0); x.rotate((r()-.5)*.6);
+      x.fillStyle = COL.ink; x.font = '800 30px Syne, sans-serif'; x.textAlign = 'center'; x.textBaseline = 'middle';
+      x.fillText('✳', 0, 2); x.restore();
+      break; }
+  }
+  // i veli: una striscia di nastro per le socchiuse, carta coperta e sigillo per le sigillate
+  const tape = (tx, ty, tw, rot, col) => { x.save(); x.translate(tx, ty); x.rotate(rot); x.globalAlpha = .72;
+    cutPath(x, [[-tw/2,-8],[tw/2,-8],[tw/2,8],[-tw/2,8]], seed+tw|0, 1.6); x.fillStyle = col; x.fill();
+    x.globalAlpha = .35; x.strokeStyle = COL.ink; x.lineWidth = .8; x.stroke(); x.restore(); };
+  if(it.v === 'socchiusa'){ tape(118, 32, 64, .72 + (r()-.5)*.2, COL.blu); }
+  if(it.v === 'sigillata'){
+    x.save(); cutPath(x, [[p+5,p+5],[150-p-5,p+5],[150-p-5,150-p-5],[p+5,150-p-5]], seed+2, 2); x.clip();
+    x.fillStyle = COL.paper; x.globalAlpha = .82; x.fillRect(0,0,150,150); x.globalAlpha = .38; x.strokeStyle = COL.ink; x.lineWidth = 1;
+    for(let d=-150; d<150; d+=7){ x.beginPath(); x.moveTo(d, 0); x.lineTo(d+150, 150); x.stroke(); }
+    x.restore();
+    tape(40, 30, 58, -.7, COL.rosa); tape(112, 122, 58, -.7, COL.blu);
+    x.save(); x.translate(75, 72); x.rotate((r()-.5)*.5); x.beginPath();
+    for(let t=0;t<=20;t++){ const an = t/20*Math.PI*2, rr = 21 + Math.sin(an*5 + seed)*2.2 + (r()-.5)*1.5; t ? x.lineTo(Math.cos(an)*rr, Math.sin(an)*rr) : x.moveTo(Math.cos(an)*rr, Math.sin(an)*rr); }
+    x.closePath(); x.globalCompositeOperation = 'multiply'; x.fillStyle = COL.rosa; x.fill(); x.globalCompositeOperation = 'source-over';
+    x.strokeStyle = COL.ink; x.lineWidth = 1.4; x.stroke();
+    x.beginPath(); x.arc(0, 0, 13, 0, Math.PI*2); x.setLineDash([2,3]); x.stroke(); x.setLineDash([]);
+    x.fillStyle = COL.ink; x.font = '800 15px Syne, sans-serif'; x.textAlign = 'center'; x.textBaseline = 'middle'; x.fillText('✳', 0, 1);
+    x.restore();
+  }
+  x.globalAlpha = .7; x.fillStyle = COL.ink; x.font = '500 13px "IBM Plex Mono", monospace'; x.textAlign = 'left'; x.textBaseline = 'alphabetic';
+  x.fillText(`${String(j+1).padStart(2,'0')}/${String(it.n).padStart(2,'0')}`, p+12, 150-p-11);
+  x.restore();
+}
+function makeSprite(s, R=180){ const c = document.createElement('canvas'); c.width = c.height = R;
+  drawSpec(c.getContext('2d'), ITEMS[s.i], s.j, s.seed, R); return c; }
+function buildSprites(){ refreshCol(); specs.forEach(s => s.spr = makeSprite(s)); }
+
+/* foto vere, se indicate nella voce */
+ITEMS.forEach((it,i) => { if(!it.img) return; const im = new Image();
+  loadAny(im, it.img, null, () => { it.pic = im; byItem[i].forEach(idx => specs[idx].spr = makeSprite(specs[idx])); loop(); }); });
+
+/* ---- le disposizioni ---- */
+function layout(name){
+  const pos = [], labels = [];
+  if(name === 'costellazione'){
+    const narrow = AW < 640;   // sul telefono: due colonne e tre righe
+    const centers = narrow ? [[-1,-1.5],[1,-1.5],[-1,-.5],[1,-.5],[-1,.5],[1,.5],[0,1.5]].map(([u,v]) => [u*390, v*700])
+                           : [[-1.5,-1],[-.5,-1],[.5,-1],[1.5,-1],[-1,1],[0,1],[1,1]].map(([u,v]) => [u*720, v*430]);
+    CATS.forEach((c,ci) => { const [cx,cy] = centers[ci];
+      const its = ITEMS.map((_,i) => i).filter(i => CI[ITEMS[i].c] === ci);
+      its.forEach((i,k) => { const an = k*2.39996 + ci, rad = k ? 100*Math.sqrt(k) : 0;
+        const ix = cx + Math.cos(an)*rad, iy = cy + Math.sin(an)*rad*.85;
+        byItem[i].forEach(idx => { const s = specs[idx], rr = rnd(s.seed), aj = s.j*2.39996 + i, rj = s.j ? 25*Math.sqrt(s.j + .2) : 0;
+          pos[idx] = [ix + Math.cos(aj)*rj, iy + Math.sin(aj)*rj, (rr()-.5)*.5]; }); });
+      labels.push({x:cx, y:cy - (100*Math.sqrt(its.length-1) + 95), t:c.nome, c:ci}); });
+  } else if(name === 'cassetti'){
+    const per = 4, step = 70, colW = per*step + 120;
+    CATS.forEach((c,ci) => { const x0 = (ci - (CATS.length-1)/2)*colW - (per-1)*step/2; let k = 0;
+      labels.push({x:x0 + (per-1)*step/2, y:-85, t:c.nome, c:ci});
+      ITEMS.forEach((it,i) => { if(CI[it.c] !== ci) return;
+        byItem[i].forEach(idx => { const rr = rnd(specs[idx].seed+3); pos[idx] = [x0 + (k%per)*step, (k/per|0)*step, (rr()-.5)*.07]; k++; });
+        k = Math.ceil(k/per)*per; }); });
+  } else if(name === 'tavolo'){
+    const rr = rnd(77);
+    ITEMS.forEach((it,i) => { const cx = (rr()-.5)*1900, cy = (rr()-.5)*980;
+      byItem[i].forEach((idx,q) => { const r2 = rnd(specs[idx].seed+9); pos[idx] = [cx + (r2()-.5)*80 + q*10, cy + (r2()-.5)*60 + q*7, (r2()-.5)*1.1]; }); });
+  } else { // la scatola chiusa, prima che si apra
+    specs.forEach((s,idx) => { const r2 = rnd(s.seed+1); pos[idx] = [(r2()-.5)*10, (r2()-.5)*10 - idx*.25, (r2()-.5)*.35]; });
+  }
+  return {pos, labels};
+}
+function boundsOf(list){ let x0=Infinity,y0=Infinity,x1=-Infinity,y1=-Infinity;
+  list.forEach(([x,y]) => { x0=Math.min(x0,x); y0=Math.min(y0,y); x1=Math.max(x1,x); y1=Math.max(y1,y); });
+  return {cx:(x0+x1)/2, cy:(y0+y1)/2, w:x1-x0+CS*1.6, h:y1-y0+CS*1.6}; }
+
+/* ---- camera e animazione ---- */
+let ax, AW = 1, AH = 1, cam = {x:0,y:0,z:.5}, camF = null, camE = null, C0 = 0, CD = 900, camAnim = false;
+let labels = [], labelAlpha = 0, cur = 'scatola', filt = -1, hoverI = -1, animating = false, T0 = 0, rafA = 0, order = specs;
+const DUR = reduce ? 0 : 1150, ease = t => t<.5 ? 4*t*t*t : 1 - Math.pow(-2*t+2,3)/2;
+const zFit = b => Math.min(AW/(b.w + 60), AH/(b.h + 90));
+function camTo(b, dur=DUR){ const t = {x:b.cx, y:b.cy, z:Math.min(3.2, zFit(b))};
+  if(!dur){ cam = t; camAnim = false; return; } camF = {...cam}; camE = t; C0 = performance.now(); CD = dur; camAnim = true; }
+function sizeArch(){ ax = fit(arch); AW = arch.clientWidth; AH = arch.clientHeight; }
+const toS = (wx,wy) => [(wx-cam.x)*cam.z + AW/2, (wy-cam.y)*cam.z + AH/2];
+
+function goto(name){
+  const L = layout(name); cur = name; labels = L.labels; labelAlpha = 0;
+  const now = performance.now();
+  specs.forEach((s,idx) => { s.fx = s.x; s.fy = s.y; s.fr = s.r; [s.tx, s.ty, s.tr] = L.pos[idx];
+    s.delay = reduce ? 0 : rnd(s.seed + idx)()*380 + s.c*45; });
+  T0 = now; animating = true;
+  focusCam(DUR || 0);
+  document.querySelectorAll('.arch-views .btn').forEach(b => b.setAttribute('aria-pressed', b.dataset.v === name));
+  loop();
+}
+function focusCam(dur){ const pts = specs.filter(s => filt < 0 || s.c === filt).map(s => [s.tx, s.ty]);
+  labels.filter(l => filt < 0 || l.c === filt).forEach(l => { pts.push([l.x - 75, l.y - 10], [l.x + 75, l.y - 10]); });
+  camTo(boundsOf(pts), dur); }
+
+function tick(now){
+  let busy = false;
+  if(animating){ let moving = false;
+    specs.forEach(s => { let t = DUR ? (now - T0 - s.delay)/DUR : 1; t = Math.max(0, Math.min(1, t)); if(t < 1) moving = true;
+      const e = ease(t); s.x = s.fx + (s.tx-s.fx)*e; s.y = s.fy + (s.ty-s.fy)*e; s.r = s.fr + (s.tr-s.fr)*e; });
+    animating = moving; busy ||= moving; }
+  if(camAnim){ const t = Math.min(1, (now - C0)/CD), e = ease(t);
+    cam.x = camF.x + (camE.x-camF.x)*e; cam.y = camF.y + (camE.y-camF.y)*e; cam.z = Math.exp(Math.log(camF.z) + (Math.log(camE.z) - Math.log(camF.z))*e);
+    if(t < 1) busy = true; else camAnim = false; }
+  if(!animating && labelAlpha < 1){ labelAlpha = reduce ? 1 : Math.min(1, labelAlpha + .07); busy = true; }
+  draw();
+  rafA = busy ? requestAnimationFrame(tick) : 0;
+}
+function loop(){ if(!rafA) rafA = requestAnimationFrame(tick); }
+
+function draw(){
+  ax.clearRect(0,0,AW,AH);
+  // i puntini del piano di lavoro
+  const g = 90*cam.z;
+  if(g > 14){ ax.fillStyle = COL.rule; const gx = (((AW/2 - cam.x*cam.z) % g) + g) % g, gy = (((AH/2 - cam.y*cam.z) % g) + g) % g;
+    for(let x=gx;x<AW;x+=g) for(let y=gy;y<AH;y+=g) ax.fillRect(x-1, y-1, 2, 2); }
+  const s = CS*cam.z;
+  order = hoverI < 0 ? specs : specs.filter(q => q.i !== hoverI).concat(specs.filter(q => q.i === hoverI));
+  order.forEach(sp => {
+    const [sx,sy] = toS(sp.x, sp.y); if(sx < -s || sx > AW+s || sy < -s || sy > AH+s) return;
+    const dim = filt >= 0 && sp.c !== filt, hov = sp.i === hoverI, z = s*(hov ? 1.16 : 1);
+    ax.save(); ax.translate(sx, sy); ax.rotate(sp.r); ax.globalAlpha = dim ? .12 : 1;
+    ax.fillStyle = COL.ink; ax.globalAlpha *= .16; ax.fillRect(-z*.44 + 3, -z*.44 + 4, z*.88, z*.88); ax.globalAlpha = dim ? .12 : 1;
+    ax.drawImage(sp.spr, -z/2, -z/2, z, z);
+    if(hov){ ax.strokeStyle = COL.rosa; ax.lineWidth = 2.5; ax.strokeRect(-z*.44-4, -z*.44-4, z*.88+8, z*.88+8); }
+    ax.restore();
+  });
+  if(labels.length && labelAlpha > 0){
+    ax.font = '500 11px "IBM Plex Mono", monospace'; ax.textAlign = 'center'; ax.textBaseline = 'middle';
+    try { ax.letterSpacing = '2px'; } catch(e){}
+    labels.forEach(l => { const [sx,sy] = toS(l.x, l.y), t = l.t.toUpperCase(), w = ax.measureText(t).width;
+      ax.globalAlpha = labelAlpha * (filt >= 0 && l.c !== filt ? .25 : 1);
+      ax.fillStyle = COL.paper; ax.fillRect(sx-w/2-9, sy-11, w+18, 22);
+      ax.strokeStyle = COL.ink; ax.lineWidth = 1.3; ax.strokeRect(sx-w/2-9, sy-11, w+18, 22);
+      ax.fillStyle = COL.ink; ax.fillText(t, sx+1, sy+1); });
+    try { ax.letterSpacing = '0px'; } catch(e){}
+    ax.globalAlpha = 1;
+  }
+}
+
+/* ---- puntatore: trascinare, passare sopra, aprire ---- */
+function hit(px,py){ const h = CS*cam.z*.44;
+  for(let k=order.length-1;k>=0;k--){ const sp = order[k]; if(filt >= 0 && sp.c !== filt) continue;
+    const [sx,sy] = toS(sp.x, sp.y), dx = px-sx, dy = py-sy, c = Math.cos(-sp.r), si = Math.sin(-sp.r);
+    if(Math.abs(dx*c - dy*si) < h && Math.abs(dx*si + dy*c) < h) return sp; }
+  return null; }
+const posA = e => { const b = arch.getBoundingClientRect(); return [e.clientX-b.left, e.clientY-b.top]; };
+function setHover(sp, px, py){
+  const i = sp ? sp.i : -1;
+  if(sp){ const it = ITEMS[sp.i]; tip.hidden = false;
+    tip.innerHTML = it.v === 'sigillata' ? `<b>Sigillato</b><span>${it.k} · resta nel quaderno</span>` : `<b>${it.t}</b><span>${CATS[sp.c].nome} · prova ${sp.j+1} di ${it.n}${it.v === 'socchiusa' ? ' · socchiusa' : ''}</span>`;
+    tip.style.left = Math.min(px + 16, AW - tip.offsetWidth - 8) + 'px'; tip.style.top = Math.min(py + 18, AH - tip.offsetHeight - 8) + 'px';
+    arch.style.cursor = 'pointer'; }
+  else { tip.hidden = true; arch.style.cursor = ''; }
+  if(i !== hoverI){ hoverI = i; loop(); }
+}
+let down = null;
+arch.addEventListener('pointerdown', e => { down = {x:e.clientX, y:e.clientY, cx:cam.x, cy:cam.y, drag:false};
+  if(e.pointerType === 'mouse') arch.setPointerCapture(e.pointerId); });
+arch.addEventListener('pointermove', e => { const [px,py] = posA(e);
+  if(down){ const dx = e.clientX-down.x, dy = e.clientY-down.y;
+    if(!down.drag && Math.hypot(dx,dy) > 5){ down.drag = true; camAnim = false; stage.classList.add('dragging'); setHover(null); }
+    if(down.drag){ cam.x = down.cx - dx/cam.z; cam.y = down.cy - dy/cam.z; loop(); return; } }
+  if(e.pointerType === 'mouse') setHover(hit(px,py), px, py); });
+arch.addEventListener('pointerup', e => { if(down && !down.drag){ const [px,py] = posA(e), sp = hit(px,py); if(sp) openWin(sp.i, sp.j, px, py); }
+  down = null; stage.classList.remove('dragging'); });
+arch.addEventListener('pointercancel', () => { down = null; stage.classList.remove('dragging'); });
+arch.addEventListener('pointerleave', () => { if(!down) setHover(null); });
+function zoomAt(px, py, f){ const wx = cam.x + (px-AW/2)/cam.z, wy = cam.y + (py-AH/2)/cam.z;
+  const z = Math.max(.12, Math.min(4, cam.z*f)); cam = {x: wx - (px-AW/2)/z, y: wy - (py-AH/2)/z, z}; camAnim = false; loop(); }
+let hintT;
+arch.addEventListener('wheel', e => {
+  if(!(e.ctrlKey || e.metaKey)){ stage.classList.add('hint-on'); clearTimeout(hintT); hintT = setTimeout(() => stage.classList.remove('hint-on'), 1200); return; }
+  e.preventDefault(); const [px,py] = posA(e); zoomAt(px, py, Math.exp(-e.deltaY*.0035)); }, {passive:false});
+arch.addEventListener('dblclick', e => { const [px,py] = posA(e); if(!hit(px,py)) zoomAt(px, py, 1.8); });
+function camZoom(f){ const t = {x:cam.x, y:cam.y, z:Math.max(.12, Math.min(4, cam.z*f))};
+  if(reduce){ cam = t; camAnim = false; } else { camF = {...cam}; camE = t; C0 = performance.now(); CD = 450; camAnim = true; } loop(); }
+document.getElementById('z-in').addEventListener('click', () => camZoom(1.6));
+document.getElementById('z-out').addEventListener('click', () => camZoom(1/1.6));
+document.getElementById('z-fit').addEventListener('click', () => { focusCam(reduce ? 0 : 700); loop(); });
+
+/* ---- disposizioni e filtri ---- */
+document.querySelectorAll('.arch-views .btn').forEach(b => b.addEventListener('click', () => goto(b.dataset.v)));
+const legend = document.getElementById('arch-legend');
+CATS.forEach((c,ci) => { const b = document.createElement('button'); b.type = 'button'; b.className = 'chip'; b.dataset.c = c.id;
+  b.setAttribute('aria-pressed', 'false');
+  b.innerHTML = `<span class="sw" aria-hidden="true"></span>${c.nome} <small>${ITEMS.filter(it => it.c === c.id).length}</small>`;
+  b.addEventListener('click', () => { filt = filt === ci ? -1 : ci;
+    legend.querySelectorAll('.chip').forEach((x,k) => x.setAttribute('aria-pressed', k === filt));
+    focusCam(reduce ? 0 : 800); loop(); });
+  legend.appendChild(b); });
+
+/* ---- le finestre ---- */
+let zTop = 20;
+function paintBig(cv, it, q){ const x = cv.getContext('2d'); x.setTransform(1,0,0,1,0,0); x.clearRect(0,0,cv.width,cv.height);
+  drawSpec(x, it, q, specs[byItem[ITEMS.indexOf(it)][q]].seed, cv.width); }
+function openWin(i, j=0, px=AW/2, py=AH/2){
+  const it = ITEMS[i], cat = CATS[CI[it.c]];
+  let w = stage.querySelector(`.finestra[data-i="${i}"]`);
+  if(w){ w.style.zIndex = ++zTop; w.querySelectorAll('.fin-strip button')[j].click(); w.focus({preventScroll:true}); return; }
+  const open = stage.querySelectorAll('.finestra'); if(open.length >= 3) open[0].remove();
+  w = document.createElement('div'); w.className = 'finestra'; w.dataset.i = i; w.tabIndex = -1;
+  w.setAttribute('role', 'dialog'); w.setAttribute('aria-label', it.t);
+  const velo = it.v === 'sigillata'
+      ? `<p>Fa parte della mia collezione personale di riferimenti, e resta nel quaderno.</p><p class="velo">Se lavoriamo insieme, lo apriamo. <a href="${MAIL}">Scrivimi</a></p>`
+      : `<p>${it.d}</p>` + (it.u ? `<a href="${it.u}" target="_blank" rel="noopener">apri ↗</a>` : '')
+        + (it.v === 'socchiusa' ? `<p class="velo">Il resto lo racconto a voce. <a href="${MAIL}">Scrivimi</a></p>` : '');
+  w.innerHTML = `<div class="fin-bar"><span class="lbl">${it.v === 'sigillata' ? 'sigillato' : cat.nome} · ${it.k}</span><button class="fin-x" type="button" aria-label="Chiudi la finestra">×</button></div>
+    <div class="fin-body"><canvas class="fin-big" width="340" height="340" aria-hidden="true"></canvas>
+      <div class="fin-txt"><h3>${it.t}</h3>${it.s ? `<p class="fin-sub">${it.s}</p>` : ''}${velo}</div></div>
+    <div class="fin-prove"><span class="lbl">${it.v === 'sigillata' ? 'pagine sigillate' : 'prove e versioni'} · ${it.n}</span><div class="fin-strip"></div></div>`;
+  const big = w.querySelector('.fin-big'), strip = w.querySelector('.fin-strip');
+  byItem[i].forEach((idx,q) => { const b = document.createElement('button'); b.type = 'button'; b.setAttribute('aria-label', `prova ${q+1}`);
+    const c = document.createElement('canvas'); c.width = c.height = 96; c.getContext('2d').drawImage(specs[idx].spr, 0, 0, 96, 96);
+    b.appendChild(c); b.addEventListener('click', () => { strip.querySelectorAll('button').forEach(x => x.removeAttribute('aria-current')); b.setAttribute('aria-current','true'); paintBig(big, it, q); });
+    strip.appendChild(b); });
+  stage.appendChild(w);
+  const SW = stage.clientWidth, SH = stage.clientHeight, ww = w.offsetWidth, wh = w.offsetHeight;
+  const left = Math.max(10, Math.min(SW - ww - 10, px + 24)), top = Math.max(10, Math.min(SH - wh - 10, py - 70));
+  w.style.left = left + 'px'; w.style.top = top + 'px'; w.style.zIndex = ++zTop;
+  w.style.transformOrigin = `${px-left}px ${py-top}px`;
+  strip.querySelectorAll('button')[j].click();
+  w.addEventListener('pointerdown', () => { w.style.zIndex = ++zTop; });
+  w.querySelector('.fin-x').addEventListener('click', () => { w.remove(); arch.focus({preventScroll:true}); });
+  const bar = w.querySelector('.fin-bar'); let d = null;
+  bar.addEventListener('pointerdown', e => { if(e.target.closest('.fin-x')) return; d = {x:e.clientX - w.offsetLeft, y:e.clientY - w.offsetTop}; bar.setPointerCapture(e.pointerId); });
+  bar.addEventListener('pointermove', e => { if(!d) return;
+    w.style.left = Math.max(-ww*.6, Math.min(SW - ww*.4, e.clientX - d.x)) + 'px'; w.style.top = Math.max(0, Math.min(SH - 40, e.clientY - d.y)) + 'px'; });
+  ['pointerup','pointercancel'].forEach(t => bar.addEventListener(t, () => d = null));
+  w.focus({preventScroll:true});
+}
+document.addEventListener('keydown', e => { if(e.key !== 'Escape') return;
+  const ws = [...stage.querySelectorAll('.finestra')]; if(!ws.length) return;
+  ws.sort((a,b) => +b.style.zIndex - +a.style.zIndex)[0].remove(); });
+
+/* ---- l'indice testuale, per chi non usa il puntatore ---- */
+const idx = document.getElementById('indice-cols');
+CATS.forEach(c => { const col = document.createElement('div');
+  col.innerHTML = `<p class="lbl">${c.nome}</p><ul></ul>`;
+  ITEMS.forEach((it,i) => { if(it.c !== c.id) return; const li = document.createElement('li'), b = document.createElement('button');
+    b.type = 'button'; b.textContent = it.v === 'sigillata' ? `${it.t} · ${it.k}` : it.t;
+    b.addEventListener('click', () => { stage.scrollIntoView({behavior: reduce ? 'auto' : 'smooth', block:'center'}); openWin(i, 0, AW/2 - 150, AH/2 - 40); });
+    li.appendChild(b); col.querySelector('ul').appendChild(li); });
+  idx.appendChild(col); });
+
+/* ---- avvio: la scatola si apre quando entra nello schermo ---- */
+function init(){ sizeArch(); buildSprites();
+  const L = layout('scatola'); specs.forEach((s,k) => { [s.x, s.y, s.r] = L.pos[k]; [s.tx, s.ty, s.tr] = L.pos[k]; });
+  const C = layout('costellazione'), P = C.pos.slice(); C.labels.forEach(l => P.push([l.x-75, l.y-10],[l.x+75, l.y-10])); camTo(boundsOf(P), 0); loop(); }
+init();
+let opened = false;
+const openBox = () => { if(opened) return; opened = true; goto('costellazione'); };
+if('IntersectionObserver' in window){
+  const io = new IntersectionObserver(es => { if(es.some(e => e.isIntersecting)){ setTimeout(openBox, reduce ? 0 : 250); io.disconnect(); } }, {threshold:.35});
+  io.observe(stage);
+} else openBox();
+
+let tR; addEventListener('resize', () => { clearTimeout(tR); tR = setTimeout(() => { const was = AW < 640; sizeArch(); if(opened){ if((AW < 640) !== was && cur === 'costellazione') goto(cur); else focusCam(0); } loop(); }, 150); });
+matchMedia('(prefers-color-scheme: dark)').addEventListener?.('change', () => { buildSprites(); loop(); });
+document.fonts.ready.then(() => { buildSprites(); loop(); });
+})();
 
 
 /* ---------- l'immagine che segue il puntatore ---------- */
