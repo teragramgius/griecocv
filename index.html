@@ -29,7 +29,7 @@ html{scroll-behavior:smooth;scroll-padding-top:env(safe-area-inset-top,0px)}
 body{margin:0;background:var(--paper);color:var(--ink);font-family:var(--serif);font-size:1.0625rem;line-height:1.56;-webkit-font-smoothing:antialiased;position:relative}
 body::after{content:"";position:fixed;inset:0;pointer-events:none;z-index:99;opacity:.5;background-image:var(--grain);background-size:180px 180px;mix-blend-mode:multiply}
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--paper:#141110;--ink:#F6F0E2;--rule:#4A4136;--blu:#6C86FF;--rosa:#FF6FB4;--arancio:#FF9A4D}}
-:root[data-theme="dark"]{--paper:#141110;--ink:#F6F0E2;--rule:#4A4136;--blu:#6C86FF;--rosa:#FF6FB4}
+:root[data-theme="dark"]{--paper:#141110;--ink:#F6F0E2;--rule:#4A4136;--blu:#6C86FF;--rosa:#FF6FB4;--arancio:#FF9A4D}
 a{color:inherit}
 img{max-width:100%;display:block}
 :focus-visible{outline:3px solid var(--rosa);outline-offset:3px}
@@ -174,11 +174,12 @@ section{padding:clamp(3.2rem,6vw,5rem) 0}
 #cursore{position:fixed;left:0;top:0;width:clamp(5rem,9vw,8rem);height:auto;pointer-events:none;z-index:120;opacity:0;transform:translate3d(-9999px,-9999px,0);transition:opacity .25s,filter .2s;will-change:transform;filter:drop-shadow(3px 4px 0 color-mix(in srgb,var(--ink) 22%,transparent))}
 #cursore.on{opacity:1}
 #cursore.click{filter:drop-shadow(3px 4px 0 color-mix(in srgb,var(--blu) 60%,transparent))}
-@media (hover:hover) and (pointer:fine){
-  body{cursor:none}
-  a,button,.giga-grid button,#tang,#map{cursor:none}
-}
-@media (hover:none),(prefers-reduced-motion:reduce){#cursore{display:none}body{cursor:auto}}
+/* la freccia di sistema sparisce solo quando il png è davvero caricato */
+html.has-cursore body,
+html.has-cursore a,
+html.has-cursore button,
+html.has-cursore #tang{cursor:none}
+@media (hover:none),(prefers-reduced-motion:reduce){#cursore{display:none}}
 .doodle+.doodle{margin-left:.2rem}
 
 /* la tasca degli attrezzi */
@@ -216,7 +217,7 @@ footer{padding:2.5rem 0 3rem;font-family:var(--mono);font-size:.75rem;letter-spa
 </head>
 <body>
 
-<header class="top">
+<header class="top" id="top">
   <div class="wrap top-bar">
     <span class="lbl">Giusy Grieco</span>
     <span class="lbl">Cultural manager · Bologna</span>
@@ -493,7 +494,7 @@ footer{padding:2.5rem 0 3rem;font-family:var(--mono);font-size:.75rem;letter-spa
       <a href="https://www.linkedin.com/in/giusy-grieco-101612202" target="_blank" rel="noopener">LinkedIn ↗</a>
       <a href="https://github.com/teragramgius" target="_blank" rel="noopener">GitHub ↗</a>
       <a href="https://teragramgius.github.io/horizon" target="_blank" rel="noopener">Track record Horizon Europe ↗</a>
-      <a href="Perla_Giusy_Grieco_CV.pdfdownload>Scarica il CV (PDF) ↓</a>
+      <a href="CV_Giusy_Grieco.pdf" download>Scarica il CV (PDF) ↓</a>
       <span>Bologna · disponibile da remoto</span><svg class="doodle" viewBox="-22 -20 44 40" aria-hidden="true"><path d="M0 14 C-16 4 -20 -6 -14 -12 C-8 -18 0 -12 0 -6 C0 -12 8 -18 14 -12 C20 -6 16 4 0 14Z"/></svg>
     </p>
     <footer><span>Giusy Grieco — cultural manager</span><a href="#top">↑ torna su</a></footer>
@@ -538,8 +539,6 @@ function fit(cv, h){ const d = Math.min(devicePixelRatio||1,2); if(h) cv.style.h
   cv.width = cv.clientWidth*d; cv.height = cv.clientHeight*d; const x = cv.getContext('2d'); x.setTransform(d,0,0,d,0,0); return x; }
 
 /* ---------- fig. 1 — tangram da scompigliare ---------- */
-// il quadrato si divide in sette pezzi: due triangoli grandi, uno medio,
-// due piccoli, un quadrato e un quadrilatero. Coordinate su una griglia 4×4.
 const PIECES = [
   [[0,0],[4,0],[2,2]],
   [[0,0],[2,2],[0,4]],
@@ -591,7 +590,6 @@ function drawPiece(x, p){
 }
 function drawTang(){
   tx.clearRect(0,0,TW,TH);
-  // il quadrato di partenza, tracciato a matita
   tx.save(); tx.globalAlpha = .35; cutPath(tx, [[ox,oy],[ox+4*S,oy],[ox+4*S,oy+4*S],[ox,oy+4*S]], 9, 2.2);
   tx.setLineDash([6,7]); tx.strokeStyle = INK(); tx.lineWidth = 1.2; tx.stroke(); tx.restore();
   P.forEach(p => drawPiece(tx, p));
@@ -689,21 +687,28 @@ function drawGrid(){ grid.querySelectorAll('canvas').forEach((cv,i) => shapeCanv
 (() => {
   const c = document.getElementById('cursore');
   if(!c || !matchMedia('(hover:hover) and (pointer:fine)').matches || reduce) return;
-  let x = innerWidth/2, y = innerHeight/2, tx = x, ty = y, run = false;
-  const draw = () => {
-    x += (tx-x)*.18; y += (ty-y)*.18;
-    const w = c.offsetWidth, h = c.offsetHeight;
-    c.style.transform = `translate3d(${x - w*.97}px, ${y - h*.12}px, 0)`;
-    if(Math.hypot(tx-x, ty-y) > .4) requestAnimationFrame(draw); else run = false;
+  const start = () => {
+    document.documentElement.classList.add('has-cursore');
+    let x = innerWidth/2, y = innerHeight/2, tx = x, ty = y, run = false;
+    const draw = () => {
+      x += (tx-x)*.18; y += (ty-y)*.18;
+      c.style.transform = `translate3d(${x - c.offsetWidth*.97}px, ${y - c.offsetHeight*.12}px, 0)`;
+      if(Math.hypot(tx-x, ty-y) > .4) requestAnimationFrame(draw); else run = false;
+    };
+    addEventListener('pointermove', e => {
+      if(e.pointerType !== 'mouse') return;
+      tx = e.clientX; ty = e.clientY; c.classList.add('on');
+      if(!run){ run = true; requestAnimationFrame(draw); }
+    });
+    addEventListener('pointerdown', () => c.classList.add('click'));
+    addEventListener('pointerup', () => c.classList.remove('click'));
+    document.addEventListener('mouseleave', () => c.classList.remove('on'));
   };
-  addEventListener('pointermove', e => {
-    if(e.pointerType !== 'mouse') return;
-    tx = e.clientX; ty = e.clientY; c.classList.add('on');
-    if(!run){ run = true; requestAnimationFrame(draw); }
-  });
-  addEventListener('pointerdown', () => c.classList.add('click'));
-  addEventListener('pointerup', () => c.classList.remove('click'));
-  addEventListener('pointerleave', () => c.classList.remove('on'));
+  if(c.complete && c.naturalWidth) start();
+  else {
+    c.addEventListener('load', start);
+    c.addEventListener('error', () => console.warn('cursore non trovato:', c.src));
+  }
 })();
 
 /* ---------- i tre stati di un'idea: 1 pezzo, 3 pezzi, 7 pezzi ---------- */
@@ -737,7 +742,6 @@ function drawCards(){
     x.restore();
   });
 }
-// il nodo corrispondente si illumina anche passando sulla scheda
 document.querySelectorAll('.card').forEach(c => {
   c.addEventListener('mouseenter', () => c.classList.add('lit'));
   c.addEventListener('mouseleave', () => c.classList.remove('lit'));
